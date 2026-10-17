@@ -1,0 +1,343 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Donor Registration | Blood Donation Management System{% endblock title %}
+
+{% block content %}
+
+
+<div class="donor-page">
+
+    <div class="donor-card">
+
+        <!-- Header -->
+
+        <div class="donor-header">
+
+            <h1>Donor Registration</h1>
+
+            <p>
+                Please provide your blood donation information
+            </p>
+
+        </div>
+
+
+        <!-- Form -->
+
+        <form method="POST" class="donor-form">
+
+            {% csrf_token %}
+
+
+            <!-- Donor Status -->
+
+            <div class="form-group">
+
+                <label for="is_donor">
+                    Are you a blood donor?
+                </label>
+
+                <select
+                    name="is_donor"
+                    id="is_donor"
+                    required
+                >
+
+                    <option value="">
+                        Select an option
+                    </option>
+
+                    <option value="yes">
+                        Yes, I am a donor
+                    </option>
+
+                    <option value="no">
+                        No, I am not a donor
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Blood Group -->
+
+            <div class="form-group">
+
+                <label for="blood_group">
+                    Blood Group
+                </label>
+
+                <select
+                    name="blood_group"
+                    id="blood_group"
+                    required
+                >
+
+                    <option value="">
+                        Select Blood Group
+                    </option>
+
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Age -->
+
+            <div class="form-group">
+
+                <label for="age">
+                    Age
+                </label>
+
+                <input
+                    type="number"
+                    name="age"
+                    id="age"
+                    placeholder="Enter your age"
+                    min="18"
+                    max="100"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Weight -->
+
+            <div class="form-group">
+
+                <label for="weight">
+                    Weight (kg)
+                </label>
+
+                <input
+                    type="number"
+                    name="weight"
+                    id="weight"
+                    placeholder="Enter your weight"
+                    min="30"
+                    step="0.1"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Last Blood Donation -->
+
+            <div class="form-group">
+
+                <label for="last_donation_date">
+                    Last Blood Donation Date
+                </label>
+
+                <input
+                    type="date"
+                    name="last_donation_date"
+                    id="last_donation_date"
+                >
+
+                <span class="form-help">
+                    If you have never donated blood, leave this field empty.
+                </span>
+
+            </div>
+
+
+             <!-- University Batch -->
+
+            <div class="form-group">
+
+                <label for="university_batch">
+                     University Batch
+                </label>
+
+                  <input
+                    type="text"
+                    name="university_batch"
+                    id="university_batch"
+                    placeholder="Example: Fall23 or Spring23"
+                    maxlength="20"
+                    required
+                    >
+
+            </div>
+
+            <!-- Submit -->
+
+            <button
+                type="submit"
+                class="donor-submit"
+            >
+                Register as Donor
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<style>
+
+    /* ================================
+       Donor Registration Page
+    ================================= */
+
+    .donor-page {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+        background: #f5f6f8;
+    }
+
+    /* Registration Card */
+
+    .donor-card {
+        width: 100%;
+        max-width: 650px;
+        background: #b8b7f5;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+    }
+
+    /* Header */
+
+    .donor-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .donor-header h1 {
+        margin: 0;
+        color: #c62828;
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    .donor-header p {
+        margin-top: 8px;
+        color: #777;
+        font-size: 15px;
+    }
+
+    /* Form */
+
+    .donor-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .form-group label {
+        color: #333;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    /* Input and Select */
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        box-sizing: border-box;
+
+        padding: 13px 15px;
+
+        border: 1px solid #d5d5d5;
+        border-radius: 8px;
+
+        background: #fff;
+
+        font-size: 15px;
+
+        outline: none;
+
+        transition: 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+        border-color: #c62828;
+        box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.10);
+    }
+
+    /* Help text */
+
+    .form-help {
+        color: #777;
+        font-size: 12px;
+        margin-top: 2px;
+    }
+
+    /* Submit Button */
+
+    .donor-submit {
+        width: 100%;
+        padding: 14px;
+
+        margin-top: 10px;
+
+        border: none;
+        border-radius: 8px;
+
+        background: #c62828;
+        color: white;
+
+        font-size: 16px;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: 0.2s;
+    }
+
+    .donor-submit:hover {
+        background: #a91f1f;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 600px) {
+
+        .donor-page {
+            padding: 20px 10px;
+        }
+
+        .donor-card {
+            padding: 25px 20px;
+        }
+
+        .donor-header h1 {
+            font-size: 26px;
+        }
+    }
+
+</style>
+
+
+{% endblock content %}

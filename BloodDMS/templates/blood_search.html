@@ -1,0 +1,639 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Blood Search | Blood Donation Management System{% endblock title %}
+
+{% block content %}
+
+
+<div class="blood-search-page">
+
+    <!-- Page Header -->
+    <div class="search-header">
+        <h1>🩸 Find a Blood Donor</h1>
+        <p>Search registered donors by blood group</p>
+    </div>
+
+
+    <!-- Search Box -->
+    <div class="search-box">
+
+        <form method="GET" action="{% url 'blood_search' %}" class="search-form">
+
+            <div class="form-group">
+                <label for="blood_group">Select Blood Group</label>
+
+                <select name="blood_group" id="blood_group">
+
+                    <option value="">All Blood Groups</option>
+
+                    <option value="A+"
+                        {% if blood_group == "A+" %}selected{% endif %}>
+                        A+
+                    </option>
+
+                    <option value="A-"
+                        {% if blood_group == "A-" %}selected{% endif %}>
+                        A-
+                    </option>
+
+                    <option value="B+"
+                        {% if blood_group == "B+" %}selected{% endif %}>
+                        B+
+                    </option>
+
+                    <option value="B-"
+                        {% if blood_group == "B-" %}selected{% endif %}>
+                        B-
+                    </option>
+
+                    <option value="O+"
+                        {% if blood_group == "O+" %}selected{% endif %}>
+                        O+
+                    </option>
+
+                    <option value="O-"
+                        {% if blood_group == "O-" %}selected{% endif %}>
+                        O-
+                    </option>
+
+                    <option value="AB+"
+                        {% if blood_group == "AB+" %}selected{% endif %}>
+                        AB+
+                    </option>
+
+                    <option value="AB-"
+                        {% if blood_group == "AB-" %}selected{% endif %}>
+                        AB-
+                    </option>
+
+                </select>
+            </div>
+
+
+            <button type="submit" class="search-btn">
+                🔍 Search Donor
+            </button>
+
+
+            <a href="{% url 'blood_search' %}" class="reset-btn">
+                Reset
+            </a>
+
+        </form>
+
+    </div>
+
+
+    <!-- Result Information -->
+    <div class="result-info">
+
+        {% if blood_group %}
+
+            <h2>
+                Donors with blood group
+                <span>{{ blood_group }}</span>
+            </h2>
+
+        {% else %}
+
+            <h2>
+                All Registered Donors
+            </h2>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- Donor List -->
+
+    {% if donors %}
+
+        <div class="donor-grid">
+
+            {% for donor in donors %}
+
+                <div class="donor-card">
+
+                    <!-- Name + Blood Group -->
+                    <div class="donor-name">
+
+                        <h3>
+                            {{ donor.first_name }}
+                            {{ donor.last_name }}
+                        </h3>
+
+                        <div class="blood-group">
+                            {{ donor.blood_group }}
+                        </div>
+
+                    </div>
+
+
+                    <!-- Donor Information -->
+                    <div class="donor-info">
+
+                        <!-- Email -->
+                        <div class="info-row">
+                            <div class="info-label">
+                                📧 Email
+                            </div>
+
+                            <div class="info-value">
+                                {{ donor.email }}
+                            </div>
+                        </div>
+
+
+                        <!-- WhatsApp -->
+                        <div class="info-row">
+                            <div class="info-label">
+                                📱 WhatsApp
+                            </div>
+
+                            <div class="info-value">
+                                {{ donor.whatsapp_number }}
+                            </div>
+                        </div>
+
+
+                        <!-- Other Number -->
+                        <div class="info-row">
+                            <div class="info-label">
+                                ☎ Other Number
+                            </div>
+
+                            <div class="info-value">
+
+                                {% if donor.other_number %}
+                                    {{ donor.other_number }}
+                                {% else %}
+                                    Not provided
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+
+                        <!-- Blood Group -->
+                        <div class="info-row">
+                            <div class="info-label">
+                                🩸 Blood Group
+                            </div>
+
+                            <div class="info-value">
+                                {{ donor.blood_group }}
+                            </div>
+                        </div>
+
+
+                        <!-- Last Donation -->
+                        <div class="info-row">
+                            <div class="info-label">
+                                📅 Last Donation
+                            </div>
+
+                            <div class="info-value">
+
+                                {% if donor.last_donation_date %}
+                                    {{ donor.last_donation_date|date:"d M Y" }}
+                                {% else %}
+                                    Never donated
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+
+                        <!-- University Batch -->
+                        <div class="info-row">
+                            <div class="info-label">
+                                🎓 Batch
+                            </div>
+
+                            <div class="info-value">
+
+                                {% if donor.university_batch %}
+                                    {{ donor.university_batch }}
+                                {% else %}
+                                    Not provided
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+
+                        <!-- Age -->
+                        <div class="info-row">
+                            <div class="info-label">
+                                🎂 Age
+                            </div>
+
+                            <div class="info-value">
+
+                                {% if donor.age %}
+                                    {{ donor.age }} years
+                                {% else %}
+                                    Not provided
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+
+                        <!-- Weight -->
+                        <div class="info-row">
+                            <div class="info-label">
+                                ⚖ Weight
+                            </div>
+
+                            <div class="info-value">
+
+                                {% if donor.weight %}
+                                    {{ donor.weight }} kg
+                                {% else %}
+                                    Not provided
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+
+                        <!-- Address -->
+                        <div class="info-row">
+                            <div class="info-label">
+                                📍 Address
+                            </div>
+
+                            <div class="info-value">
+                                {{ donor.address }}
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Contact Buttons -->
+                    <div class="contact-buttons">
+
+                        <a
+                            href="https://wa.me/{{ donor.whatsapp_number }}"
+                            target="_blank"
+                            class="contact-btn whatsapp-btn"
+                        >
+                            WhatsApp
+                        </a>
+
+
+                        <a
+                            href="tel:{{ donor.whatsapp_number }}"
+                            class="contact-btn call-btn"
+                        >
+                            Call
+                        </a>
+
+
+                        {% if donor.email %}
+                            <a
+                                href="mailto:{{ donor.email }}"
+                                class="contact-btn email-btn"
+                            >
+                                Email
+                            </a>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+        <!-- No Donor Found -->
+        <div class="no-donor">
+
+            <h3>😔 No Donor Found</h3>
+
+            {% if blood_group %}
+                <p>
+                    No registered donor with blood group
+                    <strong>{{ blood_group }}</strong>
+                    was found.
+                </p>
+            {% else %}
+                <p>
+                    There are currently no registered blood donors.
+                </p>
+            {% endif %}
+
+        </div>
+
+    {% endif %}
+
+</div>
+        <!-- CSS -->
+<style>
+    .blood-search-page {
+        max-width: 1400px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    /* Header */
+    .search-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .search-header h1 {
+        color: #b30000;
+        font-size: 36px;
+        margin-bottom: 8px;
+    }
+
+    .search-header p {
+        color: #666;
+        font-size: 16px;
+    }
+
+    /* Search Box */
+    .search-box {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        margin-bottom: 35px;
+    }
+
+    .search-form {
+        display: flex;
+        align-items: end;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .form-group {
+        flex: 1;
+        min-width: 220px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    .form-group select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 15px;
+        background: #fff;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+
+    .form-group select:focus {
+        outline: none;
+        border-color: #b30000;
+        box-shadow: 0 0 0 2px rgba(179, 0, 0, 0.1);
+    }
+
+    .search-btn {
+        padding: 12px 28px;
+        border: none;
+        border-radius: 8px;
+        background: #b30000;
+        color: white;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .search-btn:hover {
+        background: #8f0000;
+    }
+
+    .reset-btn {
+        display: inline-block;
+        padding: 12px 25px;
+        border-radius: 8px;
+        background: #555;
+        color: white;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .reset-btn:hover {
+        background: #333;
+    }
+
+    /* Result Information */
+    .result-info {
+        margin-bottom: 20px;
+    }
+
+    .result-info h2 {
+        font-size: 22px;
+        color: #333;
+        margin: 0;
+    }
+
+    .result-info span {
+        color: #b30000;
+        font-weight: 700;
+    }
+
+    /* Donor Grid */
+    .donor-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+        gap: 20px;
+    }
+
+    /* Donor Card */
+    .donor-card {
+        background: white;
+        border-radius: 12px;
+        padding: 22px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        border-top: 4px solid #b30000;
+        transition: 0.3s;
+    }
+
+    .donor-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Donor Name */
+    .donor-name {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+    }
+
+    .donor-name h3 {
+        margin: 0;
+        font-size: 21px;
+        color: #222;
+    }
+
+    /* Blood Group Badge */
+    .blood-group {
+        min-width: 48px;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #b30000;
+        color: white;
+        border-radius: 50%;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    /* Donor Information */
+    .donor-info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .info-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 9px;
+    }
+
+    .info-row:last-child {
+        border-bottom: none;
+    }
+
+    .info-label {
+        min-width: 125px;
+        font-weight: 600;
+        color: #555;
+    }
+
+    .info-value {
+        color: #333;
+        word-break: break-word;
+    }
+
+    /* Contact Buttons */
+    .contact-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
+        flex-wrap: wrap;
+    }
+
+    .contact-btn {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+        padding: 10px;
+        border-radius: 7px;
+        text-decoration: none;
+        color: white;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .whatsapp-btn {
+        background: #25d366;
+    }
+
+    .call-btn {
+        background: #007bff;
+    }
+
+    .email-btn {
+        background: #6c757d;
+    }
+
+    .contact-btn:hover {
+        opacity: 0.85;
+    }
+
+    /* No Donor */
+    .no-donor {
+        text-align: center;
+        background: white;
+        padding: 50px 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .no-donor h3 {
+        color: #b30000;
+        margin-bottom: 10px;
+    }
+
+    .no-donor p {
+        color: #666;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+
+        .blood-search-page {
+            margin: 20px auto;
+            padding: 0 12px;
+        }
+
+        .search-header h1 {
+            font-size: 28px;
+        }
+
+        .search-form {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .form-group {
+            width: 100%;
+        }
+
+        .search-btn,
+        .reset-btn {
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .donor-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .donor-name h3 {
+            font-size: 18px;
+        }
+
+        .info-row {
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .info-label {
+            min-width: auto;
+        }
+    }
+</style>
+
+{% endblock content %}

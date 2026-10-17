@@ -1,0 +1,509 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Register | Blood Donation Management System{% endblock title %}
+
+{% block content %}
+
+<div class="register-page">
+
+    <div class="register-card">
+
+        <!-- Header -->
+        <div class="register-header">
+            <div class="blood-icon">🩸</div>
+            <h1>Create Account</h1>
+            <p>Join our blood donation community</p>
+        </div>
+
+        <!-- Registration Form -->
+        <form method="POST" class="register-form">
+
+            {% csrf_token %}
+
+            <!-- Personal Information -->
+            <div class="form-section">
+
+                <h2>Personal Information</h2>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input
+                            type="text"
+                            id="first_name"
+                            name="first_name"
+                            placeholder="Enter first name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input
+                            type="text"
+                            id="last_name"
+                            name="last_name"
+                            placeholder="Enter last name"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Choose a username"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="example@gmail.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create password"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input
+                            type="password"
+                            id="confirm_password"
+                            name="confirm_password"
+                            placeholder="Confirm password"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Contact Information -->
+            <div class="form-section">
+
+                <h2>Contact Information</h2>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="whatsapp_number">
+                            WhatsApp Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="whatsapp_number"
+                            name="whatsapp_number"
+                            placeholder="01XXXXXXXXX"
+                            maxlength="15"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="other_number">
+                            Other Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="other_number"
+                            name="other_number"
+                            placeholder="Optional"
+                            maxlength="15"
+                        >
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        rows="4"
+                        placeholder="Enter your full address"
+                        required
+                    ></textarea>
+                </div>
+
+            </div>
+
+
+            <!-- Blood Information -->
+            <div class="form-section">
+
+                <h2>Blood Information</h2>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="blood_group">
+                            Blood Group
+                        </label>
+
+                        <select
+                            id="blood_group"
+                            name="blood_group"
+                            required
+                        >
+
+                            <option value="" selected disabled>
+                                Select blood group
+                            </option>
+
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="last_donation_date">
+                            Last Donation Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="last_donation_date"
+                            name="last_donation_date"
+                        >
+
+                        <small>
+                            Leave empty if you have never donated.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Terms -->
+            <div class="terms">
+
+                <label>
+                    <input type="checkbox" required>
+                    I agree to provide accurate information.
+                </label>
+
+            </div>
+
+
+            <!-- Submit -->
+            <button type="submit" class="register-btn">
+                Create Account
+            </button>
+
+
+            <!-- Login -->
+            <div class="login-link">
+                Already have an account?
+                <a href="{% url 'login' %}">Login</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- CSS for the registration page -->
+<!-- ----- Registration Page ---- -->
+<style>
+.register-page {
+    min-height: calc(100vh - 80px);
+    padding: 50px 20px;
+    background: #485e7f;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+/* ---- Registration Card ---- */
+
+.register-card {
+    width: 100%;
+    max-width: 900px;
+    background: #c794d8;
+    border-radius: 18px;
+    padding: 40px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ----  Header --- */
+
+.register-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.blood-icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #ffe8e8;
+    border-radius: 50%;
+
+    font-size: 40px;
+}
+
+.register-header h1 {
+    margin: 0;
+    font-size: 40px;
+    color: #222;
+}
+
+.register-header p {
+    margin-top: 8px;
+    color: #777;
+    font-size: 15px;
+}
+
+
+/* --- Form Section --- */
+
+.form-section {
+    margin-bottom: 30px;
+    padding: 25px;
+
+    border: 1px solid #eeeeee;
+    border-radius: 14px;
+
+    background: #fafafa;
+}
+
+.form-section h2 {
+    margin: 0 0 22px;
+
+    font-size: 19px;
+    color: #c62828;
+
+    padding-bottom: 12px;
+    border-bottom: 2px solid #eeeeee;
+}
+
+
+/* ---  Form Layout --- */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+
+/* --- Input / Select / Textarea --- */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 13px 14px;
+
+    border: 1px solid #dcdcdc;
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    font-size: 14px;
+    font-family: inherit;
+
+    outline: none;
+
+    transition: 0.25s ease;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #d32f2f;
+
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.10);
+}
+
+
+.form-group textarea {
+    resize: vertical;
+}
+
+
+/* --  Placeholder --- */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #aaa;
+}
+
+
+/* -- Small Text --- */
+
+.form-group small {
+    display: block;
+    margin-top: 6px;
+
+    color: #888;
+    font-size: 12px;
+}
+
+
+/* --  Terms -- */
+
+.terms {
+    margin: 10px 0 25px;
+
+    font-size: 14px;
+    color: #555;
+}
+
+.terms label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.terms input {
+    width: 16px;
+    height: 16px;
+}
+
+
+/*-- Register Button -- */
+
+.register-btn {
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #d32f2f;
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.register-btn:hover {
+    background: #b71c1c;
+    transform: translateY(-1px);
+}
+
+
+/* -- Login Link-- */
+
+.login-link {
+    margin-top: 22px;
+
+    text-align: center;
+
+    color: #666;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #d32f2f;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+
+/* --Responsive Design-- */
+
+@media (max-width: 700px) {
+
+    .register-page {
+        padding: 25px 12px;
+    }
+
+    .register-card {
+        padding: 25px 18px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .register-header h1 {
+        font-size: 26px;
+    }
+
+    .form-section {
+        padding: 18px;
+    }
+}
+
+</style>
+
+{% endblock content %}

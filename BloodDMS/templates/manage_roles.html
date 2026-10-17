@@ -1,0 +1,33 @@
+<form
+    method="POST"
+    action="{% url 'manage_roles' %}"
+    id="role-form-{{ user.id }}"
+>
+    {% csrf_token %}
+
+    <input
+        type="hidden"
+        name="user_id"
+        value="{{ user.id }}"
+    >
+
+    <select name="role">
+
+        <option value="user">
+            User
+        </option>
+
+        <option value="moderator">
+            Moderator
+        </option>
+
+        <option value="admin">
+            Admin
+        </option>
+
+    </select>
+
+    <button type="submit">
+        Save
+    </button>
+</form>

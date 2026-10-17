@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login | Blood Donation Management System{% endblock title %}
+
+{% block content %}
+
+<div class="login-container">
+
+    <!-- Left: Blood Donation Banner --> 
+    <div class="login-banner"> 
+        <img src="{% static 'Blood donation Bannar.png' %}" 
+        alt="Blood Donation Banner" > 
+    </div>
+
+    <!-- Right Side - Login Form -->
+    <div class="login-form-container">
+
+        <div class="login-form">
+
+            <h1>Welcome Back</h1>
+
+            <p class="login-subtitle">
+                Login to your Blood Donation account
+            </p>
+
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+
+                {% if error %}
+                     <div class="error-message">
+
+                      {{ error }}
+
+                 {% if no_account %}
+                       <p class="create-account-message">
+                       Don't have an account?
+                       <a href="{% url 'register_user' %}">
+                           Create an account
+                       </a>
+                   </p>
+                {% endif %}
+
+                 </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label for="id_username">Username</label>
+                    <input
+                        type="text"
+                        name="username"
+                        id="id_username"
+                        placeholder="Enter your username"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="id_password">Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="id_password"
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
+
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox" name="remember">
+                        Remember me
+                    </label>
+
+                    <a href="#">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="login-button">
+                        Login
+                </button>
+
+            </form>
+
+            <p class="register-text">
+                Don't have an account?
+                <a href="{% url 'register_user' %}">Create an account</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .login-container {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        padding: 40px;
+        background: #7a4d8e;
+    }
+
+    /* Banner */
+
+    .login-banner {
+        width: 55%;
+        max-width: 750px;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .login-banner img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* Login Form */
+
+    .login-form-container {
+        width: 400px;
+    }
+
+    .login-form {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+    }
+
+    .login-form h1 {
+        margin: 0;
+        font-size: 32px;
+        color: #c1121f;
+        text-align: center;
+    }
+
+    .login-subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 13px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 15px;
+        outline: none;
+    }
+
+    .form-group input:focus {
+        border-color: #c1121f;
+        box-shadow: 0 0 0 2px rgba(193, 18, 31, 0.1);
+    }
+
+    .form-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        font-size: 14px;
+    }
+
+    .form-options a {
+        color: #c1121f;
+        text-decoration: none;
+    }
+
+    .login-button {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        background: #c1121f;
+        color: white;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .login-button:hover {
+        background: #9d0e19;
+    }
+
+    .register-text {
+        text-align: center;
+        margin-top: 25px;
+        color: #666;
+    }
+
+    .register-text a {
+        color: #c1121f;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .error-message {
+        background: #ffe5e5;
+        color: #b00020;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /*login link*/
+    .login-link {
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 900px) {
+        .login-container {
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .login-banner {
+            width: 100%;
+        }
+
+        .login-form-container {
+            width: 100%;
+            max-width: 450px;
+        }
+    }
+
+    .create-account-message {
+    margin: 8px 0 0;
+    font-size: 14px;
+}
+
+.create-account-message a {
+    color: #c1121f;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.create-account-message a:hover {
+    text-decoration: underline;
+}
+
+</style>
+
+{% endblock content %}

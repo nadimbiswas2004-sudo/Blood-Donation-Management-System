@@ -1,0 +1,430 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Donation Benefits | Blood Donation Management System{% endblock title %}
+
+{% block content %}
+
+<div class="benefits-page">
+
+    <!-- Hero Section -->
+    <section class="benefits-hero">
+        <div class="hero-icon">❤️</div>
+        <h1>Benefits of Blood Donation</h1>
+        <p>
+            Your blood donation is more than a simple act of kindness.
+            It can save lives, support patients, and make a meaningful
+            difference in your community.
+        </p>
+    </section>
+
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+
+        <h2>Why Should You Donate Blood?</h2>
+
+        <div class="benefits-grid">
+
+            <!-- Benefit 1 -->
+            <div class="benefit-card">
+                <div class="benefit-icon">🩸</div>
+                <h3>Save Lives</h3>
+                <p>
+                    One blood donation can help patients who need blood
+                    during surgery, accidents, childbirth, or serious illness.
+                </p>
+            </div>
+
+            <!-- Benefit 2 -->
+            <div class="benefit-card">
+                <div class="benefit-icon">❤️</div>
+                <h3>Help Your Community</h3>
+                <p>
+                    Donating blood helps maintain an adequate blood supply
+                    for hospitals and people in emergency situations.
+                </p>
+            </div>
+
+            <!-- Benefit 3 -->
+            <div class="benefit-card">
+                <div class="benefit-icon">🏥</div>
+                <h3>Support Patients</h3>
+                <p>
+                    Your donation can support patients receiving treatment
+                    for diseases, injuries, surgeries, and other medical needs.
+                </p>
+            </div>
+
+            <!-- Benefit 4 -->
+            <div class="benefit-card">
+                <div class="benefit-icon">🌍</div>
+                <h3>Make a Difference</h3>
+                <p>
+                    A small contribution from you can create a big impact
+                    on someone's life and bring hope to families.
+                </p>
+            </div>
+
+            <!-- Benefit 5 -->
+            <div class="benefit-card">
+                <div class="benefit-icon">🤝</div>
+                <h3>Spread Humanity</h3>
+                <p>
+                    Blood donation is a simple way to show kindness,
+                    compassion, and responsibility toward others.
+                </p>
+            </div>
+
+            <!-- Benefit 6 -->
+            <div class="benefit-card">
+                <div class="benefit-icon">🌟</div>
+                <h3>Be a Hero</h3>
+                <p>
+                    Every donor has the opportunity to become a hero by
+                    helping someone in their most difficult moment.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Important Message -->
+    <section class="donation-message">
+
+        <div class="message-icon">🩸</div>
+
+        <div class="message-content">
+            <h2>Your Donation Matters</h2>
+
+            <p>
+                Blood cannot be manufactured. It can only come from generous
+                donors like you. By donating blood, you can give someone
+                another chance at life.
+            </p>
+
+            <p class="message-highlight">
+                "Donate Blood, Save Lives."
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- Call To Action -->
+    <section class="benefits-cta">
+
+        <h2>Ready to Make a Difference?</h2>
+
+        <p>
+            Register as a donor and become part of our blood donation community.
+        </p>
+
+        <a href="{% url 'donor_registration' %}" class="donate-button">
+            Become a Donor ❤️
+        </a>
+
+    </section>
+
+</div>
+
+            <!-- CSS -->
+<style>
+/* =========================================
+   Donation Benefits Page
+========================================= */
+
+.benefits-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #f8f9fa;
+    padding-bottom: 60px;
+}
+
+
+/* =========================================
+   Hero Section
+========================================= */
+
+.benefits-hero {
+    text-align: center;
+    padding: 70px 20px;
+    background: linear-gradient(135deg, #b30000, #e63946);
+    color: white;
+}
+
+.hero-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.benefits-hero h1 {
+    font-size: 42px;
+    margin-bottom: 18px;
+    font-weight: 700;
+}
+
+.benefits-hero p {
+    max-width: 750px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   Benefits Section
+========================================= */
+
+.benefits-section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 25px;
+}
+
+.benefits-section h2 {
+    text-align: center;
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+
+/* =========================================
+   Benefits Grid
+========================================= */
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+
+/* =========================================
+   Benefit Card
+========================================= */
+
+.benefit-card {
+    background: white;
+    padding: 35px 25px;
+    border-radius: 15px;
+    text-align: center;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.benefit-icon {
+    width: 75px;
+    height: 75px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff0f0;
+
+    border-radius: 50%;
+
+    font-size: 38px;
+}
+
+.benefit-card h3 {
+    font-size: 22px;
+    color: #b30000;
+    margin-bottom: 12px;
+}
+
+.benefit-card p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   Important Message
+========================================= */
+
+.donation-message {
+    max-width: 1100px;
+    margin: 70px auto;
+
+    padding: 40px;
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    background: white;
+
+    border-left: 6px solid #d90429;
+
+    border-radius: 12px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.message-icon {
+    font-size: 70px;
+    min-width: 100px;
+    text-align: center;
+}
+
+.message-content h2 {
+    color: #b30000;
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.message-content p {
+    color: #555;
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.message-highlight {
+    color: #d90429 !important;
+    font-size: 20px !important;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+
+/* =========================================
+   Call To Action
+========================================= */
+
+.benefits-cta {
+    text-align: center;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 55px 25px;
+
+    background: #fff0f0;
+
+    border-radius: 20px;
+}
+
+.benefits-cta h2 {
+    color: #b30000;
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.benefits-cta p {
+    color: #555;
+    font-size: 17px;
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   Donate Button
+========================================= */
+
+.donate-button {
+    display: inline-block;
+
+    padding: 14px 30px;
+
+    background: #d90429;
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+.donate-button:hover {
+    background: #a8001f;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 15px rgba(217, 4, 41, 0.3);
+}
+
+
+/* =========================================
+   Responsive Design
+========================================= */
+
+@media (max-width: 900px) {
+
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .benefits-hero h1 {
+        font-size: 35px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .benefits-hero {
+        padding: 50px 20px;
+    }
+
+    .benefits-hero h1 {
+        font-size: 30px;
+    }
+
+    .benefits-hero p {
+        font-size: 16px;
+    }
+
+    .donation-message {
+        margin: 40px 20px;
+        padding: 30px 20px;
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .benefits-section {
+        margin: 40px auto;
+    }
+
+    .benefits-section h2 {
+        font-size: 27px;
+    }
+
+    .benefits-cta {
+        margin: 20px;
+    }
+
+}
+</style>
+
+{% endblock content %}
